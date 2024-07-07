@@ -6,7 +6,11 @@
 
 set(SOURCES
   error.cpp
-  wrapper.cpp
+  value.cpp
+  object.cpp
+  array.cpp
+  callback_info.cpp
+  env.cpp
 )
 
 file(GLOB HEADERS "*.hpp")
