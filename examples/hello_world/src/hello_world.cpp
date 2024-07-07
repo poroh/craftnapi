@@ -12,6 +12,7 @@ using craftnapi::Result;
 
 Result<craftnapi::Value> hello_world(craftnapi::Env& env, const craftnapi::CallbackInfo& ci) {
     return ci[0]
+        .add_context("first argument")
         .bind(craftnapi::Value::to_string)
         .bind([&](auto&& str) {
             return env.create_string("Hello world: " + str);

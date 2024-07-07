@@ -85,7 +85,6 @@ napi_value Env::exports(const ObjectSpec& spec) const noexcept {
         .value_or(nullptr);
 }
 
-
 Result<Array> Env::create_array() const noexcept {
     napi_value arr;
     if (auto status = napi_create_array(m_env, &arr); status != napi_ok) {
