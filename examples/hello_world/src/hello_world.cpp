@@ -12,9 +12,7 @@ using craftnapi::Result;
 
 Result<craftnapi::Value> hello_world(craftnapi::Env& env, const craftnapi::CallbackInfo& ci) {
     return ci[0]
-        .bind([](auto&& val) {
-            return val.as_string();
-        })
+        .bind(craftnapi::Value::to_string)
         .bind([&](auto&& str) {
             return env.create_string("Hello world: " + str);
         });
@@ -22,15 +20,9 @@ Result<craftnapi::Value> hello_world(craftnapi::Env& env, const craftnapi::Callb
 
 napi_value init(napi_env inenv, napi_value) {
     craftnapi::Env env(inenv);
-    auto exports =
-        env.create_object({
-                { "hello_world", env.create_function(hello_world) },
-            });
-    return env.maybe_throw_error(exports)
-        .fmap([](auto&& obj) {
-            return obj.to_value().to_napi();
-        })
-        .value_or(nullptr);
+    return env.exports({
+        { "hello_world", env.create_function(hello_world) },
+    });
 }
 
 NAPI_MODULE(NODE_GYP_MODULE_NAME, init);

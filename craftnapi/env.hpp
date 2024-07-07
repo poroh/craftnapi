@@ -37,6 +37,7 @@ public:
 
     RVO create_object() const noexcept;
     RVO create_object(const ObjectSpec&) const noexcept;
+    napi_value exports(const ObjectSpec&) const noexcept;
 
     RVA create_array() const noexcept;
 

@@ -79,6 +79,13 @@ Result<Object> Env::create_object(const ObjectSpec& spec) const noexcept {
         });
 }
 
+napi_value Env::exports(const ObjectSpec& spec) const noexcept {
+    return maybe_throw_error(create_object(spec))
+        .fmap(craftnapi::Object::fmap_to_napi)
+        .value_or(nullptr);
+}
+
+
 Result<Array> Env::create_array() const noexcept {
     napi_value arr;
     if (auto status = napi_create_array(m_env, &arr); status != napi_ok) {

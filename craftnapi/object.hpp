@@ -27,6 +27,7 @@ public:
     Result<Value> wrap(std::unique_ptr<T> native_obj) const noexcept;
 
     static Value fmap_to_value(const Object&) noexcept;
+    static napi_value fmap_to_napi(const Object&) noexcept;
 private:
     napi_env m_env;
     napi_value m_value;
@@ -54,6 +55,10 @@ inline Value Object::to_value() const noexcept {
 
 inline Value Object::fmap_to_value(const Object& obj) noexcept {
     return obj.to_value();
+}
+
+inline napi_value Object::fmap_to_napi(const Object& obj) noexcept {
+    return obj.to_value().to_napi();
 }
 
 }
