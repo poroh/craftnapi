@@ -1,0 +1,11 @@
+{
+    "name": "Hello world example",
+    "version": "1.0.0",
+    "description": "Hello world for craftnapi",
+    "main": "index.js",
+    "scripts": {
+        "build": "node-gyp rebuild --verbose",
+        "start": "node index.js"
+    },
+    "gypfile": true
+}
