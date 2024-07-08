@@ -5,12 +5,9 @@
 // Hello world example of craftnapi
 //
 
-#include <node_api.h>
 #include <craftnapi/env.hpp>
 
-using craftnapi::Result;
-
-Result<craftnapi::Value> hello_world(craftnapi::Env& env, const craftnapi::CallbackInfo& ci) {
+craftnapi::Result<craftnapi::Value> hello_world(craftnapi::Env& env, const craftnapi::CallbackInfo& ci) {
     return ci[0]
         .add_context("first argument")
         .bind(craftnapi::Value::to_string)
