@@ -17,7 +17,7 @@ CallbackInfo::CallbackInfo(Value self_arg, std::vector<Value>&& values)
 
 Result<Value> CallbackInfo::operator[](size_t index) const noexcept {
     if (index >= m_args.size()) {
-        return make_error_code(WrapperError::NO_REQUIRED_ARGUMENT);
+        return make_error_code(WrapperError::no_required_argument);
     }
     return m_args[index];
 }

@@ -23,7 +23,7 @@ Result<ConstBinaryView> Value::as_buffer() const noexcept {
         return make_error_code(status);
     }
     if (!is_buffer) {
-        return make_error_code(WrapperError::INVALID_TYPE);
+        return make_error_code(WrapperError::invalid_type);
     }
 
     void *data;
@@ -41,7 +41,7 @@ Result<Object> Value::as_object() const noexcept {
         return make_error_code(status);
     }
     if (valuetype != napi_object) {
-        return make_error_code(WrapperError::INVALID_TYPE);
+        return make_error_code(WrapperError::invalid_type);
     }
     return Object(m_env, m_value);
 }

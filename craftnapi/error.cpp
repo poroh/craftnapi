@@ -57,9 +57,9 @@ const char *NapiWrapperErrorCategory::name() const noexcept {
 
 std::string NapiWrapperErrorCategory::message(int code) const {
     switch ((WrapperError)code) {
-    case WrapperError::OK:            return "Success";
-    case WrapperError::INVALID_TYPE:  return "Invalid type";
-    case WrapperError::NO_REQUIRED_ARGUMENT:  return "No required argument specified";
+    case WrapperError::ok:            return "Success";
+    case WrapperError::invalid_type:  return "Invalid type";
+    case WrapperError::no_required_argument:  return "No required argument specified";
     }
     return "Unknown napi wrapper code: " + std::to_string(code);
 }
