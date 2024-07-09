@@ -87,7 +87,7 @@ Maybe<T> Env::maybe_throw_error(const Result<T>& v) const noexcept {
 template<typename Container, typename F>
 Env::RVV Env::create_array(const Container& c, F&& f) {
     return create_array()
-        > [&](auto&& array) -> RVA {
+        .bind([&](auto&& array) -> RVA {
             size_t i = 0;
             for (const auto& v: c) {
                 auto maybe_err = f(v)
@@ -99,8 +99,8 @@ Env::RVV Env::create_array(const Container& c, F&& f) {
                 }
             }
             return array;
-        }
-        > Array::fmap_to_value;
+        })
+        .fmap(Array::fmap_to_value);
 }
 
 }
